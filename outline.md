@@ -37,6 +37,7 @@
 
 ### 3-Point Saddle
 **45&deg; center with 22.5&deg; returns**
+
 |Obstruction Height  |Shrink Amount  |Distance off Center Mark  |
 |--------------------|---------------|--------------------------|
 |Every inch          |3/16"          |2 1/2"                    |
@@ -46,6 +47,7 @@
 |4"                  |3/4"           |10"                       |
 
 **60&deg; center with 30&deg; returns**
+
 |Obstruction Height  |Shrink Amount  |Distance off Center Mark  |
 |--------------------|---------------|--------------------------|
 |Every inch          |1/4"           |2"                        |
