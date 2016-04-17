@@ -1,27 +1,24 @@
-import path from 'path';
-import webpack from 'webpack';
-import autoprefixer from 'autoprefixer';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
+const path = ('path');
+const webpack = ('webpack');
+const autoprefixer = ('autoprefixer');
+const ExtractTextPlugin = ('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = ('html-webpack-plugin');
 
 const BUILD_PATH = path.join(__dirname, 'build');
 const ENTRY_PATH = path.join(__dirname, 'app', 'index.js');
 
 module.exports = {
   context: __dirname,
-  devtool: 'inline-source-map',
+  devtool: 'source-map',
   entry: [
     // sets up an ES6-ish environment with promise support
     'babel-polyfill',
-    // webpack-hot-middleware needs this
-    'webpack-hot-middleware/client',
     // the main application script
     ENTRY_PATH,
   ],
   output: {
     path: BUILD_PATH,
     filename: 'bundle.js',
-    publicPath: '/assets/', // where the generated static files reside.
   },
   resolve: {
     extensions: ['', '.js', '.jsx', '.json', '.node', '.png', '.css', '.scss'],
@@ -75,12 +72,16 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './app/index.html',
     }),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      minimize: true,
+      compress: {
+        warnings: false,
+      },
+    }),
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': JSON.stringify('development'),
+        'NODE_ENV': JSON.stringify('production'),
       },
     }),
   ],
